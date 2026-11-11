@@ -1,6 +1,6 @@
 # 01 - Conceptos de Contenedores
 
-En este módulo se repasan los fundamentos de la contenedorización para entender qué ejecuta Kubernetes por debajo antes de pasar a la orquestación.
+En este módulo se repasan los fundamentos de la contenerización para entender qué ejecuta Kubernetes por debajo antes de pasar a la orquestación.
 
 ## Objetivos del módulo
 * Diferenciar entre máquinas virtuales tradicionales y contenedores.
