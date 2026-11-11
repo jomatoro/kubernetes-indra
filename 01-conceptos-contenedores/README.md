@@ -34,7 +34,7 @@ Existen varias alternativas destacadas a Docker, siendo Podman una de las más p
 * **LXC / LXD:** Virtualización a nivel de sistema operativo basada en contenedores Linux, ideal para gestionar entornos completos con servicios múltiples en lugar de contenedores de aplicación únicos
 
 ## Práctica sugerida
-Experimentar el aislamiento de procesos con las herramientas namespaces y c-groups del kernel de Linux
-Crear un `Dockerfile` sencillo para una aplicación web estática, construir la imagen localmente y verificar su funcionamiento en el navegador.
-Crear un 'Pod' con dos contenedores y verificar su funcionamiento.
+Experimentar el aislamiento de procesos con las herramientas namespaces y c-groups del kernel de Linux. 
+Crear un `Dockerfile` sencillo para una aplicación web estática, construir la imagen localmente y verificar su funcionamiento en el navegador.  
+Crear un 'Pod' con dos contenedores y verificar su funcionamiento.  
 
