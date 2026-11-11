@@ -9,6 +9,7 @@ En este módulo se repasan los fundamentos de la contenerización para entender 
 
 ## Conceptos clave
 * **Imagen vs. Contenedor:** Una imagen es una plantilla de solo lectura con el código y sus dependencias; el contenedor es una instancia en ejecución de esa imagen.
+* **Docker:** Herramienta de gestión de contenedores, popular por poseer repositorios con gran variedad de imágenes de contenedor hardenizadas, y ser la pionera en masificar el uso de los contenedores.
 * **Dockerfile:** Archivo de texto con instrucciones paso a paso para construir una imagen.
 * **Container Runtime:** Motor encargado de ejecutar los contenedores (ej. `containerd`, `CRI-O`, Docker Engine).
 
@@ -26,7 +27,7 @@ docker logs web
 ```
 ## Alternativas a Docker
 Existen varias alternativas destacadas a Docker, siendo Podman una de las más populares. A continuación se detallan las mejores opciones según lo que se requiera:
-* **PODMAN:** Alternativa daemonless, contenedores rootless, CLI prácticamente idéntico a Docker, compatible con OCI, maneja PODS (como Kubernetes)
+* **Podman:** Alternativa daemonless, contenedores rootless, CLI prácticamente idéntico a Docker, compatible con OCI, maneja PODS (como Kubernetes)
 * **Containerd:** Motor de bajo nivel de Docker, proyecto de la CNCF, interacción más directa con el kernel para gestionar contenedores
 * **Rancher Desktop:** Aplicación gráfica de código abierto que utiliza containerd o K3s, alternativa a Docker Desktop en varios OS
 * **CRI-O:** Entorno de ejecución de contenedores ligero que se integra con Kubernetes, consumo mínimo de recursos, compatible OCI, ideal para entornos productivos con Kubernetes
