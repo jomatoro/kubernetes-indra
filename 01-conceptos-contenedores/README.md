@@ -116,9 +116,9 @@ En este ejercicio un contenedor web (`nginx`) y un contenedor auxiliar (`busybox
    podman exec cont-helper wget -qO- http://localhost:80
    ```
 5. **Opcional crear un yaml compatible con kubernetes a partir del pod creado:**
-   '''bash
+   ```bash
    podman generate kube pod-demo > pod-k8s.yaml
-   '''
+   ```
 6. **Ver los contenedores agrupados y limpiar:**
    ```bash
    podman pod ps
