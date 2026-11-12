@@ -41,6 +41,11 @@ Existen varias alternativas destacadas a Docker, siendo Podman una de las más p
 * **LXC / LXD:** Virtualización a nivel de sistema operativo basada en contenedores Linux, ideal para gestionar entornos completos con servicios múltiples en lugar de contenedores de aplicación únicos
 
 ## Prácticas del módulo
+Se requiere la clonación del repositorio en su servidor local, y cambiarse al directorio kubernetes-indra:  
+   ```bash
+   git clone https://github.com/jomatoro/kubernetes-indra
+   cd kubernetes-indra
+   ```
 
 ### Ejercicio 1: Aislamiento de procesos en Linux con Namespaces y cgroups
 *Requisitos: Sistema Linux con privilegios de administrador (`sudo`) y `systemd` (cgroups v2).*
