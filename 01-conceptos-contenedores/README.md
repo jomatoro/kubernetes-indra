@@ -123,9 +123,3 @@ En este ejercicio un contenedor web (`nginx`) y un contenedor auxiliar (`busybox
    podman pod rm -f pod-demo
    ```
 
-
-## Práctica sugerida
-Experimentar el aislamiento de procesos con las herramientas namespaces y c-groups del kernel de Linux.  
-Crear un `Dockerfile` sencillo para una aplicación web estática, construir la imagen localmente y verificar su funcionamiento en el navegador.  
-Crear un 'Pod' con dos contenedores y verificar su funcionamiento.  
-
