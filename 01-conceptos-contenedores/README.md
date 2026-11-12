@@ -69,7 +69,7 @@ Existen varias alternativas destacadas a Docker, siendo Podman una de las más p
 ---
 
 ### Ejercicio 2: Creación de una imagen con Dockerfile
-*Ubicación del archivo: `ejemplos/ejercicio-02-dockerfile/`*
+*Ubicación del archivo: [ejemplos/ejercicio-02-dockerfile/](https://github.com/jomatoro/kubernetes-indra/tree/main/01-conceptos-contenedores/ejemplos/ejercicio-02-dockerfile)*
 
 En este ejercicio se genera una imagen de contenedor basado en una imagen básica. Si no tenemos instalado docker, podemos modificar los comandos "docker ..." por "podman ..." (caso CentOS).
 
