@@ -95,7 +95,6 @@ En este ejercicio se genera una imagen de contenedor basado en una imagen básic
 ---
 
 ### Ejercicio 3: Creación de un Pod de 2 contenedores con Podman
-*Ubicación del archivo: `ejemplos/ejercicio-03-podman-pod/`*
 
 En este ejercicio un contenedor web (`nginx`) y un contenedor auxiliar (`busybox`) comparten el mismo *namespace* de red dentro de un Pod de Podman.
 
@@ -116,10 +115,14 @@ En este ejercicio un contenedor web (`nginx`) y un contenedor auxiliar (`busybox
    ```bash
    podman exec cont-helper wget -qO- http://localhost:80
    ```
-5. **Ver los contenedores agrupados y limpiar:**
+5. **Opcional crear un yaml compatible con kubernetes a partir del pod creado:**
+   '''bash
+   podman generate kube pod-demo > pod-k8s.yaml
+   '''
+6. **Ver los contenedores agrupados y limpiar:**
    ```bash
    podman pod ps
    podman ps --pod
    podman pod rm -f pod-demo
    ```
-
+   
