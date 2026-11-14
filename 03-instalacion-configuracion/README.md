@@ -3,7 +3,7 @@
 En este módulo aprenderás a levantar un clúster desde cero, configurar el acceso cliente y validar el estado de salud de los nodos.
 
 ## Material Teórico
-* **[Descargar guía teórica del módulo (PDF)](./03-instalacion-configuracion.pdf)** — Apuntes completos sobre instalación, configuración y verificación de un clúster Kubernetes basado en la herramienta kubeadm.
+* **[Descargar guía teórica del módulo (PDF)](./03-instalacion-configuracion-kubernetes.pdf)** — Apuntes completos sobre instalación, configuración y verificación de un clúster Kubernetes basado en la herramienta kubeadm.
 
 ## Objetivos del módulo
 * Desplegar un entorno local de pruebas y entender el flujo de instalación con `kubeadm`.
