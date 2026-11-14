@@ -48,5 +48,35 @@ Se requiere la clonación del repositorio en su servidor local, y cambiarse al d
    git clone https://github.com/jomatoro/kubernetes-indra
    cd kubernetes-indra
    ```
+## Desplegar una arquitectura simplificada para una aplicación web que requiere diferentes tipos de controladores según su función: 
+* **Frontend:** Una app web sin estado que debe poder escalarse rápidamente. 
+* **Base de Datos:** Un motor de almacenamiento que requiere identidad única y discos persistentes. 
+* **Monitoreo:** Un agente que debe correr obligatoriamente en cada nodo del clúster. 
+* **Migración:** Una tarea única que prepare la base de datos antes de que el sistema opere. 
+* **Respaldo:** Una tarea automatizada que limpie temporales o haga backups cada minuto. 
 
-Escribir un manifiesto YAML para un `Deployment` de 3 réplicas de Nginx, desplegarlo y eliminar manualmente un Pod para observar cómo el controlador lo recrea automáticamente.
+### Ejercicio 1: Despliegue imperativo o declarativo de 3 réplicas de Nginx mediante un Deployment llamado web-frontend (carga stateless)
+Tomar como ejemplo el archivo frontend-deployment.yaml y ejecutar su despliegue:
+   ```bash
+   kubectl apply -f frontend-deployment.yaml 
+   kubectl get deployments 
+   kubectl get pods -l app=frontend 
+   ```
+### Ejercicio 2: Despliegue de 2 réplicas de una base de datos PostgreSQL utilizando nombres de red estables, mediante un Statefulset (carga stateful)
+Tomar como ejemplo el archivo db-statefulset.yaml y ejecutar su despliegue:
+   ```
+   kubectl apply -f db-statefulset.yaml 
+   kubectl get statefulset 
+   kubectl get pods -l app=postgres 
+   ```
+Verás db-0 y db-1 creándose secuencialmente 
+
+### Ejercicio 3: Despliega un agente de recolección de logs (fluent-bit) que se ejecute automáticamente en todos los nodos del clúster, mediante un Daemonset.
+Tomar como ejemplo el archivo log-daemonset.yaml y ejecutar su despliegue:
+   ```bash
+   kubectl apply -f log-daemonset.yaml 
+   kubectl get daemonset 
+   kubectl get pods -o wide 
+   ```
+Verás exactamente un pod por cada nodo de tu clúster 
+
