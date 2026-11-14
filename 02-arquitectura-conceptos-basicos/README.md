@@ -31,14 +31,14 @@ kubectl scale deployment nginx-deploy --replicas=3
 ## Aplicación práctica de un cluster Kubernetes
 Usar un clúster de Kubernetes es recomendable principalmente cuando tienes una arquitectura de microservicios compleja, necesitas escalar automáticamente ante picos de tráfico y requieres alta disponibilidad sin tiempos de inactividad. No es una solución universal; para aplicaciones pequeñas o monolíticas, suele agregar una complejidad operativa innecesaria.  
 
-* Casos de uso:
+* Casos de uso:  
 • **Arquitectura de microservicios:** Si tu sistema está dividido en decenas de servicios independientes que se comunican entre sí, Kubernetes simplifica el descubrimiento de servicios, el balanceo de carga y la gestión de configuraciones.
 • **Escalabilidad dinámica y picos de tráfico:** Cuando la demanda de tu aplicación varía drásticamente (por ejemplo, en un e-commerce durante eventos de descuentos), el clúster puede crear o destruir contenedores de forma automática según el consumo de CPU o memoria.
 • **Alta disponibilidad y autorrecuperación:** Si tu negocio no puede permitirse caídas, Kubernetes detecta cuando un contenedor o servidor falla y lo reinicia o mueve a otro nodo sano en segundos, sin intervención humana.
 • **Despliegues continuos sin cortes (Zero-Downtime):** Facilita estrategias avanzadas como actualizaciones graduales (rolling updates) o pruebas canary, permitiéndote lanzar nuevas versiones del código varias veces al día sin interrumpir a los usuarios.
 • **Portabilidad entre nubes (Multi-cloud o Híbrido):** Si deseas evitar depender de un único proveedor (AWS, Google Cloud, Azure) o quieres combinar servidores propios (on-premise) con la nube, Kubernetes ofrece una capa estándar para ejecutar tus aplicaciones en cualquier entorno.
 
-* Casos no recomendados:
+* Casos no recomendados:  
 • **Aplicaciones monolíticas o proyectos pequeños:** Si tienes una aplicación sencilla con una base de datos y un tráfico predecible, mantener un clúster es matar moscas a cañonazos. En estos casos, es más barato y rápido usar un servidor tradicional (VPS) con Docker Compose o plataformas gestionadas como Heroku, Render o Railway.
 • **Equipos reducidos sin experiencia en DevOps:** Kubernetes tiene una curva de aprendizaje alta y exige mantenimiento constante (seguridad, redes, actualizaciones). Si tu equipo es pequeño y está enfocado 100% en desarrollar funcionalidades de negocio, conviene usar servicios Serverless (como AWS Lambda o Cloud Run) para delegar la infraestructura.
 
