@@ -80,3 +80,20 @@ Tomar como ejemplo el archivo log-daemonset.yaml y ejecutar su despliegue:
    ```
 Verás exactamente un pod por cada nodo de tu clúster 
 
+### Ejercicio 4: Corre una tarea que realice un cálculo pesado o simule una migración de base de datos imprimiendo "Migración finalizada con éxito" y luego termine, mediante un Job.
+Tomar como ejemplo el archivo migration-job.yaml y ejecutar su despliegue:
+   ```bash
+   kubectl apply -f migration-job.yaml 
+   kubectl get jobs
+   # verificar que el Pod termine en estado 'Completed' y observar sus logs
+   kubectl logs job/db-migration
+   ```
+
+### Ejercicio 5: Programa una tarea automática que limpie logs ejecutándose cada minuto escribiendo "Backup diario ejecutado", mediante un CronJob.
+Tomar como ejemplo el archivo backup-cronjob.yaml y ejecutar su despliegue:
+   ```bash
+   kubectl apply -f backup-cronjob.yaml 
+   kubectl get cronjobs 
+   # Espera un minuto y busca los Pods generados automáticamente: 
+   kubectl get pods 
+   ```
