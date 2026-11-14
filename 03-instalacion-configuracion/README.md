@@ -36,7 +36,80 @@ Se requiere la clonación del repositorio en su servidor local, y cambiarse al d
    git clone https://github.com/jomatoro/kubernetes-indra
    cd kubernetes-indra
    ```
+## Experimentar la diferencia entre los tres efectos principales de los Taints.
+* **NoSchedule:** Si el Pod no tolera el taint, no se planifica en el nodo (los que ya están corriendo no se ven afectados).
+* **PreferNoSchedule:** El sistema intenta evitar el nodo, pero si no hay espacio en otro lado, lo termina metiendo ahí.
+* **NoExecute:** Si el Pod no tolera el taint, es expulsado (evicted) inmediatamente del nodo, incluso si ya estaba corriendo.  
+
+Necesitamos saber el nombre de un nodo para aplicarle las reglas, para ello ejecutar ```bash kubectl get nodes```
+(Para este ejemplo, asumiremos que tu nodo se llama minikube).
+________________________________________
+Ejercicio 1: El efecto NoSchedule (Bloqueo de nuevas altas)
+Paso 1: Vamos a aplicarle un taint de tipo NoSchedule a nuestro nodo.
+kubectl taint nodes minikube clave-prueba=bloqueo:NoSchedule
+Paso 2: Intenta crear un Pod común y corriente sin ninguna tolerancia. Guarda el siguiente archivo como pod-normal.yaml y aplícalo:
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-normal
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+kubectl apply -f pod-normal.yaml
+Paso 3: Revisa el estado del Pod:
+kubectl get pods
+•	Resultado esperado: Verás que el Pod se queda en estado Pending. Si ejecutas kubectl describe pod pod-normal, en la sección de eventos abajo de todo verás un mensaje indicando que el nodo tenía un Taint que el Pod no toleraba (1 node(s) had untolerated taint).
+________________________________________
+Ejercicio 2: El efecto PreferNoSchedule (El último recurso)
+Paso 1: Primero, limpiemos el escenario anterior removiendo el taint (se quita agregando un signo menos - al final).
+kubectl delete pod pod-normal
+kubectl taint nodes minikube clave-prueba:NoSchedule-
+Paso 2: Ahora aplicamos el efecto "suave" (PreferNoSchedule):
+kubectl taint nodes minikube clave-prueba=preferencia:PreferNoSchedule
+Paso 3: Vuelve a aplicar el mismo archivo pod-normal.yaml de antes:
+kubectl apply -f pod-normal.yaml
+Paso 4: Monitorea el estado:
+kubectl get pods
+•	Resultado esperado: El Pod pasará a Running. Al ser un entorno de un solo nodo (laboratorio local), el Scheduler no tiene otra opción disponible. Como PreferNoSchedule es una preferencia y no una obligación, Kubernetes prefiere romper la regla antes que dejar tu Pod sin ejecutar.
+________________________________________
+Ejercicio 3: El efecto NoExecute (La expulsión inmediata)
+Este es el efecto más agresivo. Vamos a ver cómo desaloja aplicaciones vivas.
+Paso 1: Limpiemos el clúster nuevamente.
+kubectl delete pod pod-normal
+kubectl taint nodes minikube clave-prueba:PreferNoSchedule-
+Paso 2: Vamos a crear un Deployment con 3 réplicas idénticas para ver el comportamiento en masa. Guarda esto como deploy-test.yaml:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mi-web
+  template:
+    metadata:
+      labels:
+        app: mi-web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+kubectl apply -f deploy-test.yaml
+Verifica que las 3 réplicas estén corriendo exitosamente (kubectl get pods).
+Paso 3: Con los Pods ya ejecutándose, vamos a clavar el Taint NoExecute en el nodo:
+kubectl taint nodes minikube clave-prueba=peligro:NoExecute
+Paso 4: Mira inmediatamente qué pasa con tus Pods:
+kubectl get pods
+•	Resultado esperado: Los Pods existentes entran en estado Terminating de inmediato y desaparecen. El Deployment intentará crear nuevos Pods para cumplir con la cuota de 3, pero los nuevos se quedarán infinitamente en Pending porque el nodo ahora los expulsa.
+________________________________________
+Limpieza Final del Laboratorio
+Para dejar tu clúster limpio y como estaba al principio, remueve el último taint:
+kubectl delete deploy app-test
+kubectl taint nodes minikube clave-prueba:NoExecute-
+
 
 
 ## Práctica sugerida
-Inicializar un clúster local (con Kind, Minikube o `kubeadm`), instalar un plugin de red CNI y comprobar que todos los nodos figuren en estado `Ready`.
+Inicializar un clúster local con kubeadm, instalar un plugin de red CNI y comprobar que todos los nodos figuren en estado `Ready`.
