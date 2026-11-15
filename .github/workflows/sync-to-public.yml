@@ -20,5 +20,5 @@ jobs:
           USUARIO: jomatoro
           REPO: kubernetes-indra
         run: |
-          git remote add publico "https://x-access-token:${TOKEN}@://github.com{USUARIO}/${REPO}.git"
+          git remote add publico "https://x-access-token:${TOKEN}@github.com/${USUARIO}/${REPO}.git"
           git push publico main:main --force
