@@ -1,0 +1,24 @@
+name: Sincronizar main hacia repo público
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio privado completo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Descarga todo el historial de commits
+
+      - name: Hacer push hacia el repositorio público
+        env:
+          TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
+          USUARIO: jomatoro
+          REPO: kubernetes-indra
+        run: |
+          git remote add publico "https://x-access-token:${TOKEN}@://github.com{USUARIO}/${REPO}.git"
+          git push publico main:main --force
