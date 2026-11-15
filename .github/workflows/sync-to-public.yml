@@ -13,6 +13,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Descarga todo el historial de commits
+          persist-credentials: false
 
       - name: Hacer push hacia el repositorio público
         env:
