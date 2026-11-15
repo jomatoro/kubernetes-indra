@@ -22,7 +22,7 @@ jobs:
           REPO: kubernetes-indra
         run: |
           git config user.name "GitHub Actions"
-          git config user.email "actions@github.com
+          git config user.email "actions@github.com"
           git rm -rf .github
           git commit -m "Eliminar workflows antes de sincronizar"
           git remote add publico "https://x-access-token:${TOKEN}@github.com/${USUARIO}/${REPO}.git"
