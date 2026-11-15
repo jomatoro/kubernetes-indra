@@ -51,4 +51,4 @@ Cada carpeta de capítulo sigue una estructura uniforme para facilitar el estudi
    ```
 
 ## Licencia
-Este material se distribuye bajo la Licencia MIT. Consultá el archivo `LICENSE` para más información.
+Este material se distribuye bajo la Licencia MIT. Consulta el archivo `LICENSE` para más información.
