@@ -44,11 +44,11 @@ Se requiere la clonación del repositorio en su servidor local, y cambiarse al d
 Necesitamos saber el nombre de un nodo para aplicarle las reglas, para ello ejecutar ```kubectl get nodes```. Para este ejemplo, asumiremos que el nodo se llama worker1.
 
 ### Ejercicio 1: El efecto NoSchedule (Bloqueo de nuevas altas)
-* Paso 1: Vamos a aplicarle un taint de tipo NoSchedule a nuestro nodo.
+Paso 1: Vamos a aplicarle un taint de tipo NoSchedule a nuestro nodo.
    ```bash
    kubectl taint nodes worker1 clave-prueba=bloqueo:NoSchedule
    ```
-* Paso 2: Intenta crear un Pod común y corriente sin ninguna tolerancia. Aplicar el archivo pod-normal.yaml:
+Paso 2: Intenta crear un Pod común y corriente sin ninguna tolerancia. Aplicar el archivo pod-normal.yaml:
    ```bash
    kubectl apply -f pod-normal.yaml
    # Revisa el estado del Pod:
@@ -77,8 +77,10 @@ Paso 3: Vuelve a aplicar el mismo archivo pod-normal.yaml de antes:
 ### Ejercicio 3: El efecto NoExecute (La expulsión inmediata)
 Este es el efecto más agresivo. Vamos a ver cómo desaloja aplicaciones vivas.
 Paso 1: Limpiemos el clúster nuevamente.
-kubectl delete pod pod-normal
-kubectl taint nodes minikube clave-prueba:PreferNoSchedule-
+   ```bash
+   kubectl delete pod pod-normal
+   kubectl taint nodes minikube clave-prueba:PreferNoSchedule-
+   ```
 Paso 2: Vamos a crear un Deployment con 3 réplicas idénticas para ver el comportamiento en masa. Guarda esto como deploy-test.yaml:
 apiVersion: apps/v1
 kind: Deployment
