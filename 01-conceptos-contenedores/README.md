@@ -51,7 +51,7 @@ Se requiere la clonación del repositorio en su servidor local, y cambiarse al d
 *Requisitos: Sistema Linux con privilegios de administrador (`sudo`) y `systemd` (cgroups v2).*
 
 1. **Aislamiento de procesos y hostname (`PID` y `UTS` namespaces):**
-   Ejecutá una nueva sesión de `bash` aislada del sistema anfitrión:
+   Ejecutá una nueva sesión de `bash` aislada del sistema anfitrión (lanzada desde una sesión no privilegiada, como el usuario loyalit):
    ```bash
    sudo unshare --pid --uts --mount-proc --fork bash
    ```
@@ -60,6 +60,8 @@ Se requiere la clonación del repositorio en su servidor local, y cambiarse al d
    hostname contenedor-manual
    hostname
    ps aux
+   # salimos del entorno aislado
+   exit
    ```
    *Observación:* El proceso `bash` tiene el **PID 1** y no puede ver los procesos del sistema anfitrión. Escribí `exit` para salir.
 
