@@ -56,14 +56,14 @@ Se requiere la clonación del repositorio en su servidor local, y cambiarse al d
 * **Respaldo:** Una tarea automatizada que limpie temporales o haga backups cada minuto. 
 
 ### Ejercicio 1: Despliegue imperativo o declarativo de 3 réplicas de Nginx mediante un Deployment llamado web-frontend (carga stateless)
-Tomar como ejemplo el archivo frontend-deployment.yaml y ejecutar su despliegue:
+Tomar como ejemplo el archivo **[frontend-deployment.yaml](./ejemplos/frontend-deployment.yaml)** y ejecutar su despliegue:
    ```bash
    kubectl apply -f frontend-deployment.yaml 
    kubectl get deployments 
    kubectl get pods -l app=frontend 
    ```
 ### Ejercicio 2: Despliegue de 2 réplicas de una base de datos PostgreSQL utilizando nombres de red estables, mediante un Statefulset (carga stateful)
-Tomar como ejemplo el archivo db-statefulset.yaml y ejecutar su despliegue:
+Tomar como ejemplo el archivo **[db-statefulset.yaml](./ejemplos/db-statefulset.yaml)** y ejecutar su despliegue:
    ```
    kubectl apply -f db-statefulset.yaml 
    kubectl get statefulset 
@@ -72,7 +72,7 @@ Tomar como ejemplo el archivo db-statefulset.yaml y ejecutar su despliegue:
 Verás db-0 y db-1 creándose secuencialmente 
 
 ### Ejercicio 3: Despliega un agente de recolección de logs (fluent-bit) que se ejecute automáticamente en todos los nodos del clúster, mediante un Daemonset.
-Tomar como ejemplo el archivo log-daemonset.yaml y ejecutar su despliegue:
+Tomar como ejemplo el archivo **[log-daemonset.yaml](./ejemplos/log-daemonset.yaml)** y ejecutar su despliegue:
    ```bash
    kubectl apply -f log-daemonset.yaml 
    kubectl get daemonset 
@@ -81,7 +81,7 @@ Tomar como ejemplo el archivo log-daemonset.yaml y ejecutar su despliegue:
 Verás exactamente un pod por cada nodo de tu clúster 
 
 ### Ejercicio 4: Corre una tarea que realice un cálculo pesado o simule una migración de base de datos imprimiendo "Migración finalizada con éxito" y luego termine, mediante un Job.
-Tomar como ejemplo el archivo migration-job.yaml y ejecutar su despliegue:
+Tomar como ejemplo el archivo **[migration-job.yaml](./ejemplos/migration-job.yaml)** y ejecutar su despliegue:
    ```bash
    kubectl apply -f migration-job.yaml 
    kubectl get jobs
@@ -90,7 +90,7 @@ Tomar como ejemplo el archivo migration-job.yaml y ejecutar su despliegue:
    ```
 
 ### Ejercicio 5: Programa una tarea automática que limpie logs ejecutándose cada minuto escribiendo "Backup diario ejecutado", mediante un CronJob.
-Tomar como ejemplo el archivo backup-cronjob.yaml y ejecutar su despliegue:
+Tomar como ejemplo el archivo **[backup-cronjob.yaml](./ejemplos/backup-cronjob.yaml)** y ejecutar su despliegue:
    ```bash
    kubectl apply -f backup-cronjob.yaml 
    kubectl get cronjobs 

@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migration
+spec:
+  template:
+    spec:
+      containers:
+      - name: migration
+        image: alpine
+        command: ["sh", "-c", "echo 'Iniciando migración...' && sleep 5 && echo 'Migración finalizada con éxito'"]
+      restartPolicy: Never
+  backoffLimit: 2
