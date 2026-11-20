@@ -325,6 +325,13 @@ Abrir en el navegador (o consultar con `curl`, agregando `:30080` si el Ingress 
 * `http://app1.lab.local` *(Debe responder: **Welcome to nginx**)*
 * `http://app2.lab.local` *(Debe responder: **Welcome to nginx**)*
 
+### 11. Bonus Track
+Convertir el ingress-controller en un daemonset para que se pueda acceder por todos los nodos del cluster en el puerto 80:  
+(Utilizar el archivo **[nginx-ingress-controller-daemonset](./nginx-ingress-controller-daemonset.yaml)**)
+   ```bash
+   kubectl apply -f nginx-ingress-controller-daemonset.yaml
+   ```
+
 ### Resultado esperado del laboratorio
 Al finalizar se comprende el rol de cada componente en el flujo de red:
 
