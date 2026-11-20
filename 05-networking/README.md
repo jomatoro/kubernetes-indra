@@ -34,7 +34,13 @@ Desplegar un backend y un frontend, comunicarlos mediante DNS interno (`ClusterI
 
 **Escenario:** Kubernetes *on-premises* sin salida cloud.  
 **Objetivo:** Comprender la exposición de aplicaciones dentro y fuera del clúster.  
-**Prerrequisito:** Tener el ingress nginx instalado (kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.15.1/deploy/static/provider/baremetal/deploy.yaml)
+**Prerrequisito:** Tener el ingress nginx instalado y patcheado para soportar binding a los puertos del host con HostNetwork=true  
+   ```bash
+   # Instalar el ingress Nginx oficial desde github
+   kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.15.1/deploy/static/provider/baremetal/deploy.yaml
+   # Aplicar el patch para el binding a los nodos del host
+   kubectl patch deployment ingress-nginx-controller -n ingress-nginx -p '{"spec":{"template":{"spec":{"hostNetwork":true,"dnsPolicy":"ClusterFirstWithHostNet"}}}}'
+   ```
 
 ### 1. Arquitectura del laboratorio
 Usaremos dos aplicaciones (`app1` y `app2`) desplegadas en un namespace dedicado (`networking-lab`) y las expondremos progresivamente mediante `ClusterIP`, `NodePort` e `Ingress`.
